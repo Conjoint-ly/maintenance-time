@@ -1,5 +1,5 @@
 {
-  day: "Friday",
-  startHour: "10",
-  endHour: "12"
+  "day": "Friday",
+  "startHour": 10,
+  "endHour": 12
 }
