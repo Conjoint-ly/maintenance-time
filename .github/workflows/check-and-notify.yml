@@ -1,0 +1,28 @@
+name: JSON check
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Stage
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: ${{ secrets.HOOK }}
+        method: 'POST'
+        customHeaders: '{"Content-Type": "application/json"}'
+        data: 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: json-syntax-check
+        uses: limitusus/json-syntax-check@v1
+        with:
+          pattern: "\\.json$"
