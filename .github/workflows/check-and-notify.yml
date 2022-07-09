@@ -11,13 +11,18 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+    - name: Read file contents
+      id: read_file
+      uses: andstor/file-reader-action@v1
+      with:
+        path: "maintenance-time.json"
     - name: Deploy Stage
       uses: fjogeleit/http-request-action@v1
       with:
         url: ${{ secrets.HOOK }}
         method: 'POST'
         customHeaders: '{"Content-Type": "application/json"}'
-        data: 
+        data: ${ steps.read_file.outputs.contents }
   test:
     runs-on: ubuntu-latest
     steps:
