@@ -23,7 +23,7 @@ jobs:
         url: ${{ secrets.HOOK }}
         method: 'POST'
         customHeaders: '{"Content-Type": "application/json"}'
-        data: ${ steps.read_file.outputs.contents }
+        data: "${ steps.read_file.outputs.contents }"
   test:
     runs-on: ubuntu-latest
     steps:
